@@ -9,10 +9,13 @@ export class SnsSqsStack extends cdk.Stack {
     // The code that defines your stack goes here
     
     const topic = new sns.Topic(this, 'Topic', {
-      displayName: 'My topic'
+      displayName: 'My topic',
+      topicName: 'mytopic'
     });
 
-    const myQueue = new sqs.Queue(this, 'MyQueue');
+    const myQueue = new sqs.Queue(this, 'MyQueue',{
+      queueName: 'myqueue'
+    });
     topic.addSubscription(new sns_sub.SqsSubscription(myQueue));    
   }
 }
